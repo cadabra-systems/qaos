@@ -1,0 +1,4 @@
+module Qaos.QtQuick.View
+
+IconImage 0.1 IconImage.qml
+RoundImage 0.1 RoundImage.qml

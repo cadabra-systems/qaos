@@ -1,0 +1,14 @@
+<RCC>
+	<qresource prefix="/Qaos">
+		<file>QtQuick/qmldir</file>
+		<file>QtQuick/URL.js</file>
+		<file>QtQuick/DateTime.js</file>
+		<file>QtQuick/ListView.js</file>
+	</qresource>
+
+	<qresource prefix="/Qaos">
+		<file>QtQuick/View/qmldir</file>
+		<file>QtQuick/View/IconImage.qml</file>
+		<file>QtQuick/View/RoundImage.qml</file>
+	</qresource>
+</RCC>
