@@ -3,12 +3,13 @@
 
 #include <QObject>
 
+#include <QAbstractItemModel>
+
 #include <QGuiApplication> /// < @note hack Qaos::Qaos
 #include <QQmlApplicationEngine>
 #include <QtQml>
 
 namespace Qaos {
-#if !defined(QT_QAOS)
 	class Qaos : public QObject
 	{
 	/** @name Statics */
@@ -30,7 +31,13 @@ namespace Qaos {
 		virtual ~Qaos() = default;
 	/** @} */
 
-	/** @name States */
+	/** @name Getters */
+	/** @{ */
+	public:
+		Q_INVOKABLE QMap<QString, QVariant> getDataRoleMap(QAbstractItemModel* model) const;
+	/** @} */
+
+	/** @name Setters */
 	/** @{ */
 	public:
 	/** @} */
@@ -40,7 +47,6 @@ namespace Qaos {
 	public:
 	/** @} */
 	};
-#endif
 
 	Qaos& Instance();
 }
