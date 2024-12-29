@@ -1,5 +1,6 @@
 module Qaos.QtQuick
 
 URL 0.1 URL.js
+Font 0.1 Font.js
 DateTime 0.1 DateTime.js
 ListView 0.1 ListView.js

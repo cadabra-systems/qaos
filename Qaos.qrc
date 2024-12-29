@@ -2,6 +2,7 @@
 	<qresource prefix="/Qaos">
 		<file>QtQuick/qmldir</file>
 		<file>QtQuick/URL.js</file>
+		<file>QtQuick/Font.js</file>
 		<file>QtQuick/DateTime.js</file>
 		<file>QtQuick/ListView.js</file>
 	</qresource>
