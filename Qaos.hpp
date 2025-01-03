@@ -9,6 +9,12 @@
 #include <QQmlApplicationEngine>
 #include <QtQml>
 
+#include <QDebug>
+
+#define QaosDebug() qDebug() << Q_FUNC_INFO
+#define QaosWarning() qWarning() << Q_FUNC_INFO
+#define QaosCritical() qCritical() << Q_FUNC_INFO
+
 namespace Qaos {
 	class Qaos : public QObject
 	{
