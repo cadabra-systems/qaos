@@ -43,7 +43,14 @@ function traverse(list_view)
 				retval[QtQuick.ListView.End] = 0;
 			}
 		}
-//		console.log("FeedView::traverse backward", backward_offset, backward_limit, coordinate, axis);
+		console.debug
+		(
+			"FeedView::traverse >",
+			"backward_offset:", backward_offset,
+			"backward_limit:", backward_limit,
+			"coordinate:", coordinate,
+			"axis:", axis
+		);
 
 		if (!forward) {
 			retval[QtQuick.ListView.Beginning] = list_view.indexAt(1, forward_offset);
@@ -57,7 +64,14 @@ function traverse(list_view)
 				retval[QtQuick.ListView.Beginning] = 0;
 			}
 		}
-//		console.log("FeedView::traverse forward", forward_offset, forward_limit, coordinate, axis);
+		console.debug
+		(
+			"FeedView::traverse >",
+			"forward_offset:", forward_offset,
+			"forward_limit:", forward_limit,
+			"coordinate:", coordinate,
+			"axis:", axis
+		);
 	} while (!forward || !backward);
 
 	return retval;
