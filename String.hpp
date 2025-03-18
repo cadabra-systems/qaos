@@ -34,18 +34,22 @@ namespace Qaos {
 
 		static QString CamelCase(const QString& input, const QSet<QString>& char_set = {"_"});
 
-		static inline bool IsInteger(const QString& s)
+		static inline bool IsInteger(const QString& input)
 		{
-			if (s.isEmpty()) {
+			if (input.isEmpty()) {
 				return false;
 			}
-			else if (s.front() == '-' || s.front() == '+') {
-				return (s.length() > 1) &&
-					   (std::find_if(s.begin() + 1, s.end(), [](QChar c) { return !c.isDigit(); }) == s.end());
-			}
-			else {
-				return std::find_if(s.begin(), s.end(), [](QChar c) { return !c.isDigit(); }) == s.end();
-			}
+			return std::find_if
+			(
+				(input.front() == '-' || input.front() == '+')
+				? input.constBegin() + 1
+				: input.constBegin(),
+				input.constEnd(),
+				[](const QChar& c)
+				{
+					return !c.isDigit();
+				}
+			) == input.end();
 		}
 	/** @} */
 
