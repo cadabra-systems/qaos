@@ -22,13 +22,14 @@ namespace Qaos {
 			return
 					quint32{0xFFFFFFFFuL}
 					&
-					~std::accumulate(
-										first, last,
-										~quint32{0} & quint32{0xFFFFFFFFuL},
-										[](quint32 checksum, quint8 value)
-										{
-											return table[(checksum ^ value) & 0xFFu] ^ (checksum >> 8);
-										}
+					~std::accumulate
+					(
+						first, last,
+						~quint32{0} & quint32{0xFFFFFFFFuL},
+						[](quint32 checksum, quint8 value)
+						{
+							return table[(checksum ^ value) & 0xFFu] ^ (checksum >> 8);
+						}
 					);
 		}
 
