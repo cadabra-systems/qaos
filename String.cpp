@@ -90,4 +90,26 @@ namespace Qaos {
 		}
 		return retval;
 	}
+
+	bool String::IsInteger(const QString& input)
+	{
+		if (input.isEmpty()) {
+			return false;
+		} else if (input.front() == '-' || input.front() == '+') {
+			return (
+					input.size() > 1
+					&&
+					std::find_if
+					(
+						input.constBegin() + 1, input.constEnd(),
+						[](const QChar& c) { return !c.isDigit(); }
+					) == input.constEnd()
+			);
+		}
+		return std::find_if
+		(
+			input.constBegin(), input.constEnd(),
+			[](const QChar& c) { return !c.isDigit(); }
+		) == input.constEnd();
+	}
 }
