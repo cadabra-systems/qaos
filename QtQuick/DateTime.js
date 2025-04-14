@@ -21,8 +21,11 @@ function shrinkDate(input)
 	var target = new Date(input);
 	var format = "hh:mm";
 	/// @todo now - target <= 2 hours
+	/// @todo tomorrow
+	/// @todo same_week = "dddd, hh:mm"
+
 	if (target.getFullYear() !== now.getFullYear()) {
-		format = "d MMM yyyy, hh:mm"
+		format = "dd.MM.yy" /// @todo locale dependant
 	} else if (target.getMonth() !== now.getMonth() || target.getDay() !== now.getDay()) {
 		format = "d MMM, hh:mm"
 	}
