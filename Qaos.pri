@@ -1,6 +1,6 @@
 QAOS_RESOURCES = $$PWD/Qaos.qrc
 
-QAOS_HEADERS = \
+QAOS_CXX_HEADERS = \
 	$$PWD/Qaos.hpp \
 	$$PWD/Date.hpp \
 	$$PWD/DAV/WebCollection.hpp \
@@ -13,7 +13,7 @@ QAOS_HEADERS = \
 	$$PWD/String.hpp \
 	$$PWD/Zip.hpp
 
-QAOS_SOURCES = \
+QAOS_CXX_SOURCES = \
 	$$PWD/Qaos.cpp \
 	$$PWD/Date.cpp \
 	$$PWD/DAV/WebCollection.cpp \
@@ -26,10 +26,10 @@ QAOS_SOURCES = \
 contains(QT, testlib) {
 #	QAOS_RESOURCES += $$PWD/Test/QaosTest.qrc
 
-#	QAOS_HEADERS += $$files($$PWD/Test/*.hpp, true)
-#	QAOS_SOURCES += $$files($$PWD/Test/*.cpp, true)
+#	QAOS_CXX_HEADERS += $$files($$PWD/Test/*.hpp, true)
+#	QAOS_CXX_SOURCES += $$files($$PWD/Test/*.cpp, true)
 
-#	QAOS_HEADERS += $$files($$PWD/Shocker/*.hpp, true)
-#	QAOS_SOURCES += $$files($$PWD/Shocker/*.cpp, true)
+#	QAOS_CXX_HEADERS += $$files($$PWD/Shocker/*.hpp, true)
+#	QAOS_CXX_SOURCES += $$files($$PWD/Shocker/*.cpp, true)
 }
 
