@@ -3,50 +3,61 @@
 #include <algorithm>
 
 namespace Qaos {
-	quint32 String::MurMur3(const QString& source)
+	quint32 String::MurMur32(const QString& source, quint32 seed)
 	{
-		const QByteArray uri(source.toLocal8Bit());
-		const quint8* key(reinterpret_cast<const quint8*>(uri.data()));
-		const size_t length(static_cast<size_t>(uri.length()));
-		quint32 retval(0);
+		constexpr quint32 c1(0xcc9e2d51);
+		constexpr quint32 c2(0x1b873593);
+		constexpr quint32 r1(15);
+		constexpr quint32 r2(13);
+		constexpr quint32 m(5);
+		constexpr quint32 n(0xe6546b64);
 
-		if (length > 3) {
-			const quint32* key_x4 = reinterpret_cast<const quint32*>(key);
-			size_t i = length >> 2;
-			do {
-				quint32 k = *key_x4++;
-				k *= 0xcc9e2d51;
-				k = (k << 15) | (k >> 17);
-				k *= 0x1b873593;
-				retval ^= k;
-				retval = (retval << 13) | (retval >> 19);
-				retval = (retval * 5) + 0xe6546b64;
-			} while (--i);
-			key = reinterpret_cast<const quint8*>(key_x4);
+		quint32 retval(seed);
+
+		const QByteArray uri(source.toLocal8Bit());
+		const quint8* data(reinterpret_cast<const quint8*>(uri.data()));
+		const size_t length(static_cast<size_t>(uri.length()));
+		const int nblocks(length / 4);
+		const quint32* blocks(reinterpret_cast<const quint32*>(data));
+		for (int i = 0; i < nblocks; i++) {
+			quint32 k = blocks[i];
+
+			k *= c1;
+			k = (k << r1) | (k >> (32 - r1)); /// < rotleft
+			k *= c2;
+
+			retval ^= k;
+			retval = (retval << r2) | (retval >> (32 - r2)); /// < rotleft
+			retval = retval * m + n;
 		}
 
-		if (length & 3) {
-			std::size_t i(length & 3);
-			quint32 k(0);
-			key = &key[i - 1];
-			do {
-			  k <<= 8;
-			  k |= *key--;
-			} while (i--);
+		quint32 k1(0);
+		const std::uint8_t* tail(data + nblocks * 4);
+		switch (length & 3) {
+			case 3:
+				k1 ^= tail[2] << 16;
+				[[fallthrough]];
 
-			k *= 0xcc9e2d51;
-			k = (k << 15) | (k >> 17);
-			k *= 0x1b873593;
-			retval ^= k;
+			case 2:
+				k1 ^= tail[1] << 8;
+				[[fallthrough]];
+
+			case 1:
+				k1 ^= tail[0];
+				k1 *= c1;
+				k1 = (k1 << r1) | (k1 >> (32 - r1));
+				k1 *= c2;
+				retval ^= k1;
+				break;
 		}
 
 		retval ^= length;
+		/// @note fmix32
 		retval ^= retval >> 16;
 		retval *= 0x85ebca6b;
 		retval ^= retval >> 13;
 		retval *= 0xc2b2ae35;
 		retval ^= retval >> 16;
-
 		return retval;
 	}
 

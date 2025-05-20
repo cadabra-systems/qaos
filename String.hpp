@@ -11,7 +11,7 @@ namespace Qaos {
 	/** @name Statics */
 	/** @{ */
 	public:
-		static quint32 MurMur3(const QString& source);
+		static quint32 MurMur32(const QString& source, quint32 seed = 0);
 
 		static std::array<quint32, 256> CRC32LookupTable() noexcept;
 		template <typename I>
