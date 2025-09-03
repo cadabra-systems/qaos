@@ -34,7 +34,7 @@ namespace Qaos {
 	/** @{ */
 	private:
 		Qaos(QObject* parent = nullptr);
-		virtual ~Qaos() = default;
+		virtual ~Qaos() override;
 	/** @} */
 
 	/** @name Getters */

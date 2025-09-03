@@ -1,5 +1,16 @@
 #include "Qaos.hpp"
 
+#include <QtCore/QResource>
+
+void QaosResource(bool onoff)
+{
+	if (onoff) {
+		Q_INIT_RESOURCE(Qaos);
+	} else {
+		Q_CLEANUP_RESOURCE(Qaos);
+	}
+}
+
 namespace Qaos {
 	Qaos& Instance()
 	{
@@ -27,12 +38,18 @@ namespace Qaos {
 	:
 		QObject(parent)
 	{
-		qmlRegisterSingletonType<Qaos>("Qaos", 0, 1, "Qaos", Qaos::QInstance);
+		::QaosResource(true);
 
+		qmlRegisterSingletonType<Qaos>("Qaos", 0, 1, "Qaos", Qaos::QInstance);
 /*
 		qmlRegisterUncreatableType<>(?, 1, 1, "Qaos.xyz", QStringLiteral(""));
 		qmlRegisterType<>(?, 1, 0, "Qaos.xyz");
 */
+	}
+
+	Qaos::~Qaos()
+	{
+		::QaosResource(false);
 	}
 
 	QMap<QString, QVariant> Qaos::getDataRoleMap(QAbstractItemModel* model) const
