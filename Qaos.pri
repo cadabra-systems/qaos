@@ -30,12 +30,12 @@ $$PWD/NaturalSort.cpp \
 $$PWD/String.cpp \
 $$PWD/Zip.cpp
 
-contains(QT, testlib) {
-	#QAOS_QT_RESOURCES += $$PWD/Test/QaosTest.qrc
+contains(QT_PRIVATE, testlib) {
+#QAOS_QT_RESOURCES += $$PWD/Test/QaosTest.qrc
 
-	#QAOS_CXX_HEADERS += $$files($$PWD/Test/*.hpp, true)
-	#QAOS_CXX_SOURCES += $$files($$PWD/Test/*.cpp, true)
+#QAOS_CXX_HEADERS += $$files($$PWD/Test/*.hpp, true)
+#QAOS_CXX_SOURCES += $$files($$PWD/Test/*.cpp, true)
 
-	#QAOS_CXX_HEADERS += $$files($$PWD/Shocker/*.hpp, true)
-	#QAOS_CXX_SOURCES += $$files($$PWD/Shocker/*.cpp, true)
+#QAOS_CXX_HEADERS += $$files($$PWD/Shocker/*.hpp, true)
+#QAOS_CXX_SOURCES += $$files($$PWD/Shocker/*.cpp, true)
 }
