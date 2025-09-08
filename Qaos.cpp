@@ -1,5 +1,7 @@
 #include "Qaos.hpp"
 
+#include "Range.hpp"
+
 #include <QtCore/QResource>
 
 void QaosResource(bool onoff)
@@ -41,10 +43,9 @@ namespace Qaos {
 		::QaosResource(true);
 
 		qmlRegisterSingletonType<Qaos>("Qaos", 0, 1, "Qaos", Qaos::QInstance);
-/*
-		qmlRegisterUncreatableType<>(?, 1, 1, "Qaos.xyz", QStringLiteral(""));
-		qmlRegisterType<>(?, 1, 0, "Qaos.xyz");
-*/
+
+		qmlRegisterType<Range>("Qaos", 1, 0, "Range");
+//		qRegisterMetaType<Range>("Qaos::Range");
 	}
 
 	Qaos::~Qaos()
