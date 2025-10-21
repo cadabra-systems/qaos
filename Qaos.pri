@@ -13,6 +13,7 @@ $$PWD/Date.hpp \
 $$PWD/Range.hpp \
 $$PWD/String.hpp \
 $$PWD/Zip.hpp \
+$$PWD/Default.hpp \
 $$PWD/AtomicEnum.hpp \
 $$PWD/NaturalSort.hpp \
 $$PWD/MakeDateTime.hpp \
@@ -27,6 +28,7 @@ $$PWD/Date.cpp \
 $$PWD/Range.cpp \
 $$PWD/String.cpp \
 $$PWD/Zip.cpp \
+$$PWD/Default.cpp \
 $$PWD/NaturalSort.cpp \
 $$PWD/DAV/WebItem.cpp \
 $$PWD/DAV/WebCollection.cpp \
