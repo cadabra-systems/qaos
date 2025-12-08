@@ -16,8 +16,14 @@ $$PWD/Zip.hpp \
 $$PWD/Default.hpp \
 $$PWD/AtomicEnum.hpp \
 $$PWD/NaturalSort.hpp \
+$$PWD/ObjectPathModel.hpp \
+$$PWD/ObjectTreeModel.hpp \
+$$PWD/ObjectListModel.hpp \
 $$PWD/MakeDateTime.hpp \
 $$PWD/MakeUnique.hpp \
+$$PWD/ThreadTaskManager.hpp \
+$$PWD/FilesystemTask.hpp \
+$$PWD/NetworkAccessManager.hpp \
 $$PWD/DAV/WebCollection.hpp \
 $$PWD/DAV/WebConnection.hpp \
 $$PWD/DAV/WebItem.hpp
@@ -30,6 +36,12 @@ $$PWD/String.cpp \
 $$PWD/Zip.cpp \
 $$PWD/Default.cpp \
 $$PWD/NaturalSort.cpp \
+$$PWD/ObjectPathModel.cpp \
+$$PWD/ObjectTreeModel.cpp \
+$$PWD/ObjectListModel.cpp \
+$$PWD/ThreadTaskManager.cpp \
+$$PWD/FilesystemTask.cpp \
+$$PWD/NetworkAccessManager.cpp \
 $$PWD/DAV/WebItem.cpp \
 $$PWD/DAV/WebCollection.cpp \
 $$PWD/DAV/WebConnection.cpp
