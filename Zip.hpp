@@ -11,7 +11,6 @@
 
 namespace Qaos {
 	/**
-	 * @brief The ZipArchiver class
 	 */
 	class ZipArchiver
 	{

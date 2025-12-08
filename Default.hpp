@@ -2,6 +2,8 @@
 #define Qaos_Default_hpp
 
 namespace Qaos {
+	/**
+	 */
 	template <typename T>
 	class Default
 	{

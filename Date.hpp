@@ -5,6 +5,8 @@
 #include <QString>
 
 namespace Qaos {
+	/**
+	 */
 	class Date
 	{
 	/** @name Qroperties */

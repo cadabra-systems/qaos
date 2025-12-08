@@ -14,8 +14,6 @@
 
 namespace Qaos {
 	/**
-	 * @brief The AtomicEnum class
-	 *
 	 * @todo Oveerride base atomic methods
 	 */
 	template <typename E>

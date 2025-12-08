@@ -5,6 +5,8 @@
 #include <QtCore/qglobal.h>
 
 namespace Qaos {
+	/**
+	 */
 	class NaturalSort
 	{
 	/** @name Statics */

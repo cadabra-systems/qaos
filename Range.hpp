@@ -17,7 +17,6 @@
 
 namespace Qaos {
 	/**
-	 * @brief The Range class
 	 * @todo Multiply ranges
 	 */
 	class Range : public QObject
