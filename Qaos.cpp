@@ -46,6 +46,9 @@ namespace Qaos {
 
 		qmlRegisterType<Range>("Qaos", 1, 0, "Range");
 //		qRegisterMetaType<Range>("Qaos::Range");
+
+		qmlRegisterType<ObjectPathModel>("Qaos", 0, 1, "ObjectPathModel");
+		qmlRegisterType<ObjectTreeModel>("Qaos", 0, 1, "ObjectTreeModel");
 	}
 
 	Qaos::~Qaos()
@@ -53,7 +56,7 @@ namespace Qaos {
 		::QaosResource(false);
 	}
 
-	QMap<QString, QVariant> Qaos::getDataRoleMap(QAbstractItemModel* model) const
+	QMap<QString, QVariant> Qaos::makeDataRoleMap(QAbstractItemModel* model) const
 	{
 		QMap<QString, QVariant> retval;
 		if (!model) {
@@ -64,5 +67,15 @@ namespace Qaos {
 			retval.insert(r.value(), r.key());
 		}
 		return retval;
+	}
+
+	::Qaos::ObjectPathModel* Qaos::makeObjectPathModel(QObject* root) const
+	{
+		return new ::Qaos::ObjectPathModel(root);
+	}
+
+	::Qaos::ObjectTreeModel* Qaos::makeObjectTreeModel(QObject* root) const
+	{
+		return new ::Qaos::ObjectTreeModel(root);
 	}
 }

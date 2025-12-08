@@ -3,6 +3,9 @@
 
 #include <QObject>
 
+#include "ObjectPathModel.hpp"
+#include "ObjectTreeModel.hpp"
+
 #include <QAbstractItemModel>
 
 #include <QGuiApplication> /// < @note hack Qaos::Qaos
@@ -16,6 +19,8 @@
 #define QaosCritical() qCritical() << Q_FUNC_INFO
 
 namespace Qaos {
+	/**
+	 */
 	class Qaos : public QObject
 	{
 	/** @name Statics */
@@ -37,10 +42,17 @@ namespace Qaos {
 		virtual ~Qaos() override;
 	/** @} */
 
+	/** @name Factories */
+	/** @{ */
+	public:
+		Q_INVOKABLE QMap<QString, QVariant> makeDataRoleMap(QAbstractItemModel* model) const;
+		Q_INVOKABLE ::Qaos::ObjectPathModel* makeObjectPathModel(QObject* root) const;
+		Q_INVOKABLE ::Qaos::ObjectTreeModel* makeObjectTreeModel(QObject* root) const;
+	/** @} */
+
 	/** @name Getters */
 	/** @{ */
 	public:
-		Q_INVOKABLE QMap<QString, QVariant> getDataRoleMap(QAbstractItemModel* model) const;
 	/** @} */
 
 	/** @name Setters */
