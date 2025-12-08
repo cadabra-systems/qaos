@@ -6,6 +6,8 @@
 #include <QtCore/qglobal.h>
 
 namespace Qaos {
+	/**
+	 */
 	class String
 	{
 	/** @name Statics */
@@ -38,9 +40,40 @@ namespace Qaos {
 		static bool IsInteger(const QString& input);
 	/** @} */
 
-	/** @name Constructors */
+	/** @name Classes */
 	/** @{ */
-	private:
+	public:
+		class Constant
+		{
+		public:
+			template <std::size_t N>
+			constexpr Constant(const char(&a)[N])
+			:
+				_pointer(a),
+				_size(N - 1)
+			{
+			}
+
+		private:
+			const char* const _pointer;
+			const std::size_t _size;
+
+		public:
+			constexpr char operator[](std::size_t index) const
+			{
+				return index < _size ? _pointer[index] : throw std::out_of_range("");
+			}
+
+			constexpr std::size_t size() const
+			{
+				return _size;
+			}
+
+			constexpr const char* get() const
+			{
+				return _pointer;
+			}
+		};
 	/** @} */
 	};
 }
