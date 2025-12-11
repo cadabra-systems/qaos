@@ -37,7 +37,7 @@ namespace Qaos {
 	/** @name Properties */
 	/** @{ */
 	private:
-		TemplatedPropertyList<DynamicRole> _role_list;
+		ObjectPropertyList<DynamicRole> _role_list;
 		QHash<int, QByteArray> _role_hash;
 	/** @} */
 

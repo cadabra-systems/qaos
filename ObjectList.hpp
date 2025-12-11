@@ -30,7 +30,7 @@ namespace Qaos {
 	/** @name Properties */
 	/** @{ */
 	private:
-		TemplatedPropertyList<QObject> _list;
+		ObjectPropertyList<QObject> _list;
 	/** @} */
 
 	/** @name Factories */
