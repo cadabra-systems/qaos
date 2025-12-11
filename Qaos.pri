@@ -16,6 +16,10 @@ $$PWD/Zip.hpp \
 $$PWD/Default.hpp \
 $$PWD/AtomicEnum.hpp \
 $$PWD/NaturalSort.hpp \
+$$PWD/DynamicRole.hpp \
+$$PWD/PropertyList.hpp \
+$$PWD/SortFilterProxyModel.hpp \
+$$PWD/ObjectList.hpp \
 $$PWD/ObjectPathModel.hpp \
 $$PWD/ObjectTreeModel.hpp \
 $$PWD/ObjectListModel.hpp \
@@ -36,6 +40,10 @@ $$PWD/String.cpp \
 $$PWD/Zip.cpp \
 $$PWD/Default.cpp \
 $$PWD/NaturalSort.cpp \
+$$PWD/DynamicRole.cpp \
+$$PWD/PropertyList.cpp \
+$$PWD/SortFilterProxyModel.cpp \
+$$PWD/ObjectList.cpp \
 $$PWD/ObjectPathModel.cpp \
 $$PWD/ObjectTreeModel.cpp \
 $$PWD/ObjectListModel.cpp \

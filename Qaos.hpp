@@ -3,6 +3,10 @@
 
 #include <QObject>
 
+#include "DynamicRole.hpp"
+#include "ObjectList.hpp"
+
+#include "SortFilterProxyModel.hpp"
 #include "ObjectPathModel.hpp"
 #include "ObjectTreeModel.hpp"
 
