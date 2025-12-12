@@ -23,6 +23,7 @@ $$PWD/ObjectList.hpp \
 $$PWD/ObjectPathModel.hpp \
 $$PWD/ObjectTreeModel.hpp \
 $$PWD/ObjectListModel.hpp \
+$$PWD/VariantItemModel.hpp \
 $$PWD/MakeDateTime.hpp \
 $$PWD/MakeUnique.hpp \
 $$PWD/ThreadTaskManager.hpp \
@@ -47,6 +48,7 @@ $$PWD/ObjectList.cpp \
 $$PWD/ObjectPathModel.cpp \
 $$PWD/ObjectTreeModel.cpp \
 $$PWD/ObjectListModel.cpp \
+$$PWD/VariantItemModel.cpp \
 $$PWD/ThreadTaskManager.cpp \
 $$PWD/FilesystemTask.cpp \
 $$PWD/NetworkAccessManager.cpp \

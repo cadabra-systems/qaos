@@ -6,6 +6,7 @@
 #include "DynamicRole.hpp"
 #include "ObjectList.hpp"
 
+#include "VariantItemModel.hpp"
 #include "SortFilterProxyModel.hpp"
 #include "ObjectPathModel.hpp"
 #include "ObjectTreeModel.hpp"

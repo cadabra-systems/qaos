@@ -49,7 +49,7 @@ namespace Qaos {
 
 		qmlRegisterType<DynamicRole>("Qaos", 0, 1, "DynamicRole");
 		qmlRegisterType<ObjectList>("Qaos", 0, 1, "ObjectList");
-
+		qmlRegisterType<VariantItemModel>("Qaos", 0, 1, "VariantItemModel");
 		qmlRegisterType<SortFilterProxyModel>("Qaos", 0, 1, "SortFilterProxyModel");
 		qmlRegisterType<ObjectPathModel>("Qaos", 0, 1, "ObjectPathModel");
 		qmlRegisterType<ObjectTreeModel>("Qaos", 0, 1, "ObjectTreeModel");
