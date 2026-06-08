@@ -343,14 +343,14 @@ namespace Qaos {
 
 		/// @brief fix the file path, if broken (convert separators, eat leading and trailing ones)
 		retval.file_path = QDir::fromNativeSeparators(retval.file_path);
-		QStringRef filePathRef(&retval.file_path);
-		while (filePathRef.startsWith(QLatin1Char('.')) || filePathRef.startsWith(QLatin1Char('/'))) {
-			filePathRef = filePathRef.mid(1);
+		QStringView file_path(retval.file_path);
+		while (file_path.startsWith(QLatin1Char('.')) || file_path.startsWith(QLatin1Char('/'))) {
+			file_path = file_path.mid(1);
 		}
-		while (filePathRef.endsWith(QLatin1Char('/'))) {
-			filePathRef.chop(1);
+		while (file_path.endsWith(QLatin1Char('/'))) {
+			file_path.chop(1);
 		}
-		retval.file_path = filePathRef.toString();
+		retval.file_path = file_path.toString();
 		return retval;
 	}
 

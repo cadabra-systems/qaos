@@ -91,12 +91,12 @@ namespace Qaos {
 	/** @name Statics */
 	/** @{ */
 	private:
-		static G* Item(QQmlListProperty<G>* list, int index)
+		static G* Item(QQmlListProperty<G>* list, qsizetype index)
 		{
 			return reinterpret_cast<Container*>(list->data)->value(index);
 		}
 
-		static int Size(QQmlListProperty<G>* list)
+		static qsizetype Size(QQmlListProperty<G>* list)
 		{
 			return reinterpret_cast<Container*>(list->data)->count();
 		}
@@ -128,7 +128,7 @@ namespace Qaos {
 			}
 		}
 
-		static void Replace(QQmlListProperty<G>* list, int index, G* item)
+		static void Replace(QQmlListProperty<G>* list, qsizetype index, G* item)
 		{
 			Container* container(reinterpret_cast<Container*>(list->data));
 			const int count(!container ? 0 : container->count());
@@ -372,12 +372,12 @@ namespace Qaos {
 	/** @name Statics */
 	/** @{ */
 	private:
-		static O* Item(QQmlListProperty<O>* list, int index)
+		static O* Item(QQmlListProperty<O>* list, qsizetype index)
 		{
 			return reinterpret_cast<Container*>(list->data)->first.value(index);
 		}
 
-		static int Size(QQmlListProperty<O>* list)
+		static qsizetype Size(QQmlListProperty<O>* list)
 		{
 			return reinterpret_cast<Container*>(list->data)->first.count();
 		}
@@ -414,7 +414,7 @@ namespace Qaos {
 			}
 		}
 
-		static void Replace(QQmlListProperty<O>* list, int index, O* item)
+		static void Replace(QQmlListProperty<O>* list, qsizetype index, O* item)
 		{
 			Container* container(reinterpret_cast<Container*>(list->data));
 			const int count(!container ? 0 : container->first.count());

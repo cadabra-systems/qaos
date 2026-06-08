@@ -200,7 +200,7 @@ namespace Qaos { namespace DAV {
 	{
 		const int first_space(response.indexOf(' '));
 		const int second_space(response.indexOf(' ', first_space + 1));
-		return response.midRef(first_space + 1, second_space - first_space - 1).toInt();
+		return response.mid(first_space + 1, second_space - first_space - 1).toInt();
 	}
 
 	QDateTime WebCollection::parseDateTime(const QString& input, const QString& type)
