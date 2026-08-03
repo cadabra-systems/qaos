@@ -5,7 +5,7 @@ namespace Qaos {
 	{
 	}
 
-	ThreadTaskManager* ThreadTaskManager::Instance()
+	ThreadTaskManager* ThreadTaskManager::GlobalInstance()
 	{
 		static ThreadTaskManager retval(QThreadPool::globalInstance());
 		return &retval;

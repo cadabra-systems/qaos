@@ -10,6 +10,8 @@
 
 #include <QStandardItemModel>
 
+#include <QtQml/qqmlregistration.h>
+
 #include "Qaos.hpp"
 
 namespace Qaos {
@@ -29,6 +31,7 @@ namespace Qaos {
 	/** @name Qroperties */
 	/** @{ */
 	Q_OBJECT
+		QML_NAMED_ELEMENT(VariantItemModel)
 	/** @} */
 
 	/** @name Procedures */

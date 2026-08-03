@@ -2,9 +2,11 @@
 #define Qaos_DynamicRole_hpp
 
 #include <QObject>
+
 #include <QString>
 #include <QVariant>
 #include <QQmlParserStatus>
+#include <QtQml/qqmlregistration.h>
 
 namespace Qaos {
 	class SortFilterProxyModel;
@@ -21,6 +23,7 @@ namespace Qaos {
 	/** @name Qroperties */
 	/** @{ */
 	Q_OBJECT
+		QML_NAMED_ELEMENT(DynamicRole)
 		Q_INTERFACES(QQmlParserStatus)
 		Q_PROPERTY(QString roleName READ getRoleName WRITE setRoleName NOTIFY roleNameChanged)
 		Q_PROPERTY(QVariant roleValue READ getRoleValue WRITE setRoleValue NOTIFY roleValueChanged)

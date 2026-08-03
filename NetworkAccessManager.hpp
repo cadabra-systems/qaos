@@ -50,7 +50,7 @@ namespace Qaos {
 	/** @name Statics */
 	/** @{ */
 	public:
-		static NetworkAccessManager* Instance();
+		static NetworkAccessManager* GlobalInstance();
 	/** @} */
 
 	/** @name Constructors */

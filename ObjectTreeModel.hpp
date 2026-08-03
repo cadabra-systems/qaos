@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QEvent>
 #include <QPointer>
+#include <QtQml/qqmlregistration.h>
 
 namespace Qaos {
 	/**
@@ -40,6 +41,7 @@ namespace Qaos {
 	/** @name Qroperties */
 	/** @{ */
 	Q_OBJECT
+		QML_NAMED_ELEMENT(ObjectTreeModel)
 		Q_ENUM(Direction)
 		Q_PROPERTY(QObject* root READ getRoot WRITE setRoot NOTIFY rootChanged)
 		Q_PROPERTY(QObject* ancestor READ getAncestor NOTIFY rootChanged)

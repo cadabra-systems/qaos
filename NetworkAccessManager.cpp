@@ -28,7 +28,7 @@ namespace Qaos {
 		return retval;
 	}
 
-	NetworkAccessManager* NetworkAccessManager::Instance()
+	NetworkAccessManager* NetworkAccessManager::GlobalInstance()
 	{
 		static NetworkAccessManager retval(nullptr);
 		return &retval;

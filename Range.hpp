@@ -14,6 +14,7 @@
 #include <QVariant>
 #include <QMetaType>
 #include <QDataStream>
+#include <QtQml/qqmlregistration.h>
 
 namespace Qaos {
 	/**
@@ -24,6 +25,7 @@ namespace Qaos {
 	/** @name Qroperties */
 	/** @{ */
 	Q_OBJECT
+		QML_NAMED_ELEMENT(Range)
 		Q_PROPERTY(qreal beginPosition READ getBeginPosition WRITE setBeginPosition NOTIFY beginPositionChanged)
 		Q_PROPERTY(qreal endPosition READ getEndPosition WRITE setEndPosition NOTIFY endPositionChanged)
 	/** @} */

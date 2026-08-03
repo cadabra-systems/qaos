@@ -20,6 +20,7 @@
 #include <QDebug>
 
 #define QaosDebug() qDebug() << Q_FUNC_INFO
+#define QaosInfo() qInfo() << Q_FUNC_INFO
 #define QaosWarning() qWarning() << Q_FUNC_INFO
 #define QaosCritical() qCritical() << Q_FUNC_INFO
 
@@ -31,13 +32,16 @@ namespace Qaos {
 	/** @name Statics */
 	/** @{ */
 	public:
-		static Qaos* Instance();
-		static QObject* QInstance(QQmlEngine* engine, QJSEngine* script_engine);
+		static Qaos* GlobalInstance();
+
+		static Qaos* create(QQmlEngine* engine, QJSEngine* script_engine);
 	/** @} */
 
 	/** @name Qroperties */
 	/** @{ */
 	Q_OBJECT
+		QML_NAMED_ELEMENT(Qaos)
+		QML_SINGLETON
 	/** @} */
 
 	/** @name Constructors */
@@ -46,6 +50,15 @@ namespace Qaos {
 		Qaos(QObject* parent = nullptr);
 		virtual ~Qaos() override;
 	/** @} */
+
+	/** @name Properties */
+	/** @{ */
+	private:
+	/** @} */
+
+	public:
+		bool configure(int& argc, char** argv);
+		bool configure(const QStringList& argument_list);
 
 	/** @name Factories */
 	/** @{ */
@@ -71,6 +84,6 @@ namespace Qaos {
 	/** @} */
 	};
 
-	Qaos& Instance();
+	Qaos* GlobalInstance();
 }
 #endif

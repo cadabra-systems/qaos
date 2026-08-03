@@ -12,8 +12,8 @@
 
 #include <QPointer>
 #include <QEvent>
-
 #include <QDebug>
+#include <QtQml/qqmlregistration.h>
 
 namespace Qaos {
 	/**
@@ -40,6 +40,7 @@ namespace Qaos {
 	/** @name Qroperties */
 	/** @{ */
 	Q_OBJECT
+		QML_NAMED_ELEMENT(ObjectPathModel)
 		Q_ENUM(Filter)
 		Q_PROPERTY(QObject* object READ getObject WRITE setObject NOTIFY objectChanged)
 		Q_PROPERTY(Filter filter READ getFilter WRITE setFilter NOTIFY objectChanged)

@@ -6,6 +6,8 @@
 #include "DynamicRole.hpp"
 #include "PropertyList.hpp"
 
+#include <QtQml/qqmlregistration.h>
+
 namespace Qaos {
 	class DynamicRole;
 }
@@ -16,9 +18,10 @@ namespace Qaos {
 	/** @name Qroperties */
 	/** @{ */
 	Q_OBJECT
+		QML_NAMED_ELEMENT(SortFilterProxyModel)
 		Q_PROPERTY(QAbstractItemModel* sourceModel READ getSource WRITE setSource NOTIFY sourceChanged)
 		Q_PROPERTY(QString filterPattern READ getPattern WRITE setPattern NOTIFY patternChanged)
-		Q_PROPERTY(QQmlListProperty<Qaos::DynamicRole> roleList READ getRoleList CONSTANT)
+		Q_PROPERTY(QQmlListProperty<::Qaos::DynamicRole> roleList READ getRoleList CONSTANT)
 	/** @} */
 
 	/** @name Statics */

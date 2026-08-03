@@ -10,12 +10,15 @@
 
 #include "PropertyList.hpp"
 
+#include <QtQml/qqmlregistration.h>
+
 namespace Qaos {
 	class ObjectList : public QObject
 	{
 	/** @name Qroperties */
 	/** @{ */
 	Q_OBJECT
+		QML_NAMED_ELEMENT(ObjectList)
 		Q_PROPERTY(QQmlListProperty<QObject> list READ makeList CONSTANT)
 		Q_CLASSINFO("DefaultProperty", "list")
 	/** @} */

@@ -55,7 +55,7 @@ namespace Qaos {
 	/** @name Statics */
 	/** @{ */
 	public:
-		static ThreadTaskManager* Instance();
+		static ThreadTaskManager* GlobalInstance();
 	/** @} */
 
 	/** @name Classes */
