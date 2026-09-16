@@ -12,5 +12,3 @@ queen_add_qml_module(
 			DateTime.js
 			ListView.js
 )
-
-add_subdirectory(View)

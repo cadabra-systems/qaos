@@ -73,5 +73,3 @@ queen_add_qml_module(
 add_subdirectory(QtQuick)
 
 target_link_libraries(Qaos PUBLIC QaosQtQuick)
-target_link_libraries(Qaos PUBLIC QaosQtQuickView)
-
