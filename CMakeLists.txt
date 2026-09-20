@@ -65,11 +65,11 @@ target_link_libraries(Qaos PUBLIC Qt6::Sql)
 target_link_libraries(Qaos PUBLIC Qt6::Xml)
 
 queen_add_qml_module(
-		Qaos
-		URI Qaos
-		VERSION 0.1
+			Qaos
+
+			URI Qaos
+			VERSION 0.1
 )
 
 add_subdirectory(QtQuick)
-
 target_link_libraries(Qaos PUBLIC QaosQtQuick)
