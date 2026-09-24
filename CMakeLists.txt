@@ -26,6 +26,8 @@ qt_add_library(
 		${CMAKE_CURRENT_SOURCE_DIR}/NaturalSort.hpp
 		${CMAKE_CURRENT_SOURCE_DIR}/NetworkAccessManager.hpp
 		${CMAKE_CURRENT_SOURCE_DIR}/NetworkAccessManager.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/ScopedObjectConnection.hpp
+		${CMAKE_CURRENT_SOURCE_DIR}/ScopedObjectConnection.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/ObjectList.hpp
 		${CMAKE_CURRENT_SOURCE_DIR}/ObjectList.cpp
 		${CMAKE_CURRENT_SOURCE_DIR}/ObjectListModel.hpp
