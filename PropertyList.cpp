@@ -14,7 +14,7 @@ namespace Qaos {
 	:
 		QObject(parent),
 
-		_default_index(0)
+		_default_index(-1)
 	{
 		QObject::connect(this, &AbstractPropertyList::resized, this, &AbstractPropertyList::onResized);
 	}
@@ -26,11 +26,10 @@ namespace Qaos {
 
 	void AbstractPropertyList::setDefaultIndex(int value)
 	{
-		if (length() > value) {
-			return ;
+		if (length() > value && value > -1) {
+			_default_index = value;
+			emit defaulted();
 		}
-		_default_index = value;
-		emit defaulted();
 	}
 
 	int AbstractPropertyList::getLength() const
@@ -55,8 +54,8 @@ namespace Qaos {
 	void AbstractPropertyList::onResized(bool increase)
 	{
 		if (!increase) {
-			if (length() < _default_index) {
-				_default_index = 0;
+			if (length() <= _default_index) {
+				_default_index = -1;
 				emit defaulted();
 			}
 		}

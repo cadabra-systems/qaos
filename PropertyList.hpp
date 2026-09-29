@@ -246,7 +246,7 @@ namespace Qaos {
 		{
 			_container.push_back(reference);
 			if (defalt_index) {
-				setDefaultIndex(_container.length());
+				setDefaultIndex(_container.length() - 1);
 			}
 			emit resized(true);
 		}
@@ -546,7 +546,7 @@ namespace Qaos {
 				reference->installEventFilter(this);
 			}
 			if (defalt_index) {
-				setDefaultIndex(_container.first.length());
+				setDefaultIndex(_container.first.length() - 1);
 			}
 			emit resized(true);
 		}
