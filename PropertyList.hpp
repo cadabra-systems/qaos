@@ -16,6 +16,9 @@
 #include <QMultiMap>
 #include <QQmlListProperty>
 
+#include <functional>
+#include <type_traits>
+
 namespace Qaos {
 	/**
 	 * @brief
@@ -45,6 +48,7 @@ namespace Qaos {
 	/** @{ */
 	public:
 		void setDefaultIndex(int value);
+		void resetDefaultIndex();
 	/** @} */
 
 	/** @name Getters */
@@ -263,6 +267,11 @@ namespace Qaos {
 		void swap(GadgetPropertyList<G>& origin)
 		{
 			origin._container.swap(_container);
+			std::swap(_default_index, origin._default_index);
+			if (_default_index != origin._default_index) {
+				emit defaulted();
+				emit origin.defaulted();
+			}
 			const qsizetype count1(_container.size());
 			const qsizetype count2(origin._container.size());
 			if (count1 == count2) {
@@ -506,6 +515,58 @@ namespace Qaos {
 		}
 	/** @} */
 
+	/** @name Procedures */
+	/** @{ */
+	public:
+		bool test(bool (O::*predicate)() const, int index = -1) const
+		{
+			if (index < 0 && (index = _default_index) < 0) {
+				return false;
+			} else if (_container.first.size() <= index) {
+				return false;
+			}
+			const O* const target(_container.first.at(index));
+			return target && (target->*predicate)();
+		}
+
+		bool test(std::function<bool(const O&)> predicate, int index = -1) const
+		{
+			if (index < 0 && (index = _default_index) < 0) {
+				return false;
+			} else if (_container.first.size() <= index) {
+				return false;
+			}
+			const O* const target(_container.first.at(index));
+			return target && predicate(*target);
+		}
+
+		/// @note тип ключа выводится только из getter: needle к нему приводится (decay_t — невыводимый контекст)
+		template <typename R>
+		int lookup(R (O::*getter)() const, const std::decay_t<R>& needle) const
+		{
+			for (int c = 0; c != _container.first.size(); ++c) {
+				const O* const target(_container.first.at(c));
+				if (target && (target->*getter)() == needle) {
+					return c;
+				}
+			}
+			return -1;
+		}
+
+		/// @note тип ключа выводится только из needle: из лямбды std::function не выводится
+		template <typename R>
+		int lookup(const std::function<std::decay_t<R>(const O&)>& getter, const R& needle) const
+		{
+			for (int c = 0; c != _container.first.size(); ++c) {
+				const O* const target(_container.first.at(c));
+				if (target && getter(*target) == needle) {
+					return c;
+				}
+			}
+			return -1;
+		}
+	/** @} */
+
 	/** @name Factories */
 	/** @{ */
 	public:
@@ -557,16 +618,42 @@ namespace Qaos {
 				_container.first.push_back(reference);
 				_container.second.insert(reference->objectName(), reference);
 				if (reference) {
+					reference->removeEventFilter(&source);
 					reference->installEventFilter(this);
 				}
 			}
 			source._container.first.clear();
+			source._container.second.clear();
 			emit resized(true);
+			emit source.resized(false);
+		}
+
+		O* take(int index)
+		{
+			O* retval(_container.first.takeAt(index));
+			_container.second.remove(!retval ? "" : retval->objectName(), retval);
+			if (retval) {
+				retval->removeEventFilter(this);
+			}
+			if (index == _default_index) {
+				_default_index = -1;
+				emit defaulted();
+			} else if (index < _default_index) {
+				--_default_index;
+				emit defaulted();
+			}
+			emit resized(false);
+			return retval;
 		}
 
 		void swap(ObjectPropertyList<O>& origin)
 		{
 			origin._container.swap(_container);
+			std::swap(_default_index, origin._default_index);
+			if (_default_index != origin._default_index) {
+				emit defaulted();
+				emit origin.defaulted();
+			}
 			const qsizetype count1(_container.second.size());
 			const qsizetype count2(origin._container.second.size());
 			if (count1 == count2) {

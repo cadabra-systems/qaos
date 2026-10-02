@@ -26,8 +26,16 @@ namespace Qaos {
 
 	void AbstractPropertyList::setDefaultIndex(int value)
 	{
-		if (length() > value && value > -1) {
+		if (value != _default_index && length() > value && value > -1) {
 			_default_index = value;
+			emit defaulted();
+		}
+	}
+
+	void AbstractPropertyList::resetDefaultIndex()
+	{
+		if (_default_index > -1) {
+			_default_index = -1;
 			emit defaulted();
 		}
 	}
