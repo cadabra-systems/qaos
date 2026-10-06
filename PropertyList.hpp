@@ -628,6 +628,17 @@ namespace Qaos {
 			emit source.resized(false);
 		}
 
+		void clear()
+		{
+			if (_container.first.isEmpty()) {
+				return ;
+			}
+			qDeleteAll(_container.first.begin(), _container.first.end());
+			_container.first.clear();
+			_container.second.clear();
+			emit resized(false);
+		}
+
 		O* take(int index)
 		{
 			O* retval(_container.first.takeAt(index));
