@@ -246,10 +246,10 @@ namespace Qaos {
 	/** @name Mutators */
 	/** @{ */
 	public:
-		void push_back(typename QList<G*>::const_reference reference, bool defalt_index = false)
+		void push_back(typename QList<G*>::const_reference reference, bool default_index = false)
 		{
 			_container.push_back(reference);
-			if (defalt_index) {
+			if (default_index) {
 				setDefaultIndex(_container.length() - 1);
 			}
 			emit resized(true);
@@ -599,14 +599,14 @@ namespace Qaos {
 	/** @name Mutators */
 	/** @{ */
 	public:
-		void push_back(typename QList<O*>::const_reference reference, bool defalt_index = false)
+		void push_back(typename QList<O*>::const_reference reference, bool default_index = false)
 		{
 			_container.first.push_back(reference);
 			_container.second.insert(reference->objectName(), reference);
 			if (reference) {
 				reference->installEventFilter(this);
 			}
-			if (defalt_index) {
+			if (default_index) {
 				setDefaultIndex(_container.first.length() - 1);
 			}
 			emit resized(true);
@@ -686,6 +686,11 @@ namespace Qaos {
 		virtual int length() const override
 		{
 			return _container.second.size();
+		}
+
+		O* getDefaultObject() const
+		{
+			return (_default_index > -1 && _default_index < _container.first.size()) ? _container.first.at(_default_index) : nullptr;
 		}
 
 		QList<typename Container::second_type::mapped_type> index(const QString& key) const
