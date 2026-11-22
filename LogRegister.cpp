@@ -42,7 +42,7 @@ namespace Qaos {
 			return false;
 		}
 		_file.setFileName(filename);
-		return _file.open(QFile::WriteOnly | QFile::Append) && _file.isWritable();
+		return _file.open(QFile::WriteOnly | QFile::Append) && _file.isWritable() && (_stream.resetStatus(), true);
 	}
 
 	bool LogRegister::close()
@@ -54,13 +54,13 @@ namespace Qaos {
 		return !_file.isOpen();
 	}
 
-	void LogRegister::filter(QtMsgType level)
+	void LogRegister::filter(QtMsgType type)
 	{
-		QLoggingCategory::defaultCategory()->setEnabled(QtMsgType::QtDebugMsg, (level <= QtMsgType::QtDebugMsg));
-		QLoggingCategory::defaultCategory()->setEnabled(QtMsgType::QtInfoMsg, (level <= QtMsgType::QtInfoMsg));
-		QLoggingCategory::defaultCategory()->setEnabled(QtMsgType::QtWarningMsg, (level <= QtMsgType::QtWarningMsg));
-		QLoggingCategory::defaultCategory()->setEnabled(QtMsgType::QtCriticalMsg, (level <= QtMsgType::QtCriticalMsg));
-		QLoggingCategory::defaultCategory()->setEnabled(QtMsgType::QtFatalMsg, (level <= QtMsgType::QtFatalMsg));
+		QLoggingCategory::defaultCategory()->setEnabled(QtMsgType::QtDebugMsg, (type <= QtMsgType::QtDebugMsg));
+		QLoggingCategory::defaultCategory()->setEnabled(QtMsgType::QtInfoMsg, (type <= QtMsgType::QtInfoMsg));
+		QLoggingCategory::defaultCategory()->setEnabled(QtMsgType::QtWarningMsg, (type <= QtMsgType::QtWarningMsg));
+		QLoggingCategory::defaultCategory()->setEnabled(QtMsgType::QtCriticalMsg, (type <= QtMsgType::QtCriticalMsg));
+		QLoggingCategory::defaultCategory()->setEnabled(QtMsgType::QtFatalMsg, (type <= QtMsgType::QtFatalMsg));
 	}
 
 	bool LogRegister::dump(QFile& file)

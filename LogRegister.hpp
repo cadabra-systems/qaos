@@ -53,7 +53,7 @@ namespace Qaos {
 	public:
 		bool open(const QString& filename);
 		bool close();
-		void filter(QtMsgType level);
+		void filter(QtMsgType type);
 		bool dump(QFile& file);
 		void put(QtMsgType type, const QMessageLogContext& context, const QString& message);
 	/** @} */
