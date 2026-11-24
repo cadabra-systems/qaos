@@ -4,8 +4,11 @@
 #include "ThreadTaskManager.hpp"
 
 #include <QDir>
+#include <QFile>
+#include <QList>
 #include <QString>
 #include <QFileInfo>
+#include <QRegularExpression>
 
 namespace Qaos {
 	class SearchFilesystemTask : public ThreadTask
@@ -41,6 +44,12 @@ namespace Qaos {
 	signals:
 		void progressed(QString file_path, int file_index, int file_count);
 		void found(QString file_path, int file_offset);
+	/** @} */
+
+	/** @name Hooks */
+	/** @{ */
+	protected:
+		virtual void search(QFile& file, const QList<QRegularExpression>& term_regex_list);
 	/** @} */
 	};
 

@@ -39,7 +39,7 @@ namespace Qaos {
 
 		QList<QFileInfo> file_info_list;
 		QStringList directory_path_list(_root_directory.path());
-		while (!directory_path_list.isEmpty()/* && !abort */) {
+		while (!directory_path_list.isEmpty() && !isAborted()) {
 			QDir directory(directory_path_list.takeFirst());
 			if (!directory.exists()) {
 				continue;
@@ -53,7 +53,7 @@ namespace Qaos {
 		}
 
 		const qsizetype total_files_count(file_info_list.size());
-		for (qsizetype file_index = 0; file_index < total_files_count; ++file_index) {
+		for (qsizetype file_index = 0; file_index < total_files_count && !isAborted(); ++file_index) {
 			const QFileInfo& file_info(file_info_list.at(file_index));
 
 			/// @??? Not each iteration
@@ -73,27 +73,31 @@ namespace Qaos {
 			}
 
 			if (!term_regex_list.isEmpty()) {
-				QFile file(file_info.absoluteFilePath());
+				QFile file(file_info.filePath());
 				if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-					QTextStream stream(&file);
-					qsizetype current_offset(0);
-					while (!stream.atEnd()) {
-						const QString line(stream.readLine());
-						for (const QRegularExpression& term_regex : term_regex_list) {
-							QRegularExpressionMatchIterator match_iterator(term_regex.globalMatch(line));
-							while (match_iterator.hasNext()) {
-								QRegularExpressionMatch match(match_iterator.next());
-								const qsizetype file_offset(current_offset + match.capturedStart());
-								emit found(file_info.filePath(), file_offset);
-							}
-						}
-						current_offset += line.length() + 1;
-					}
-					file.close();
+					search(file, term_regex_list);
 				}
 			} else {
 				emit found(file_info.filePath(), -1);
 			}
+		}
+	}
+
+	void SearchFilesystemTask::search(QFile& file, const QList<QRegularExpression>& term_regex_list)
+	{
+		QTextStream stream(&file);
+		qsizetype current_offset(0);
+		while (!stream.atEnd() && !isAborted()) {
+			const QString line(stream.readLine());
+			for (const QRegularExpression& term_regex : term_regex_list) {
+				QRegularExpressionMatchIterator match_iterator(term_regex.globalMatch(line));
+				while (match_iterator.hasNext()) {
+					QRegularExpressionMatch match(match_iterator.next());
+					const qsizetype file_offset(current_offset + match.capturedStart());
+					emit found(file.fileName(), file_offset);
+				}
+			}
+			current_offset += line.length() + 1;
 		}
 	}
 }

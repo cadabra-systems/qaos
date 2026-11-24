@@ -1,8 +1,20 @@
 #include "ThreadTaskManager.hpp"
 
+#include <QFuture>
+
 namespace Qaos {
 	void ThreadTask::run()
 	{
+	}
+
+	void ThreadTask::abort()
+	{
+		_promise.future().cancel();
+	}
+
+	bool ThreadTask::isAborted() const
+	{
+		return _promise.isCanceled();
 	}
 
 	ThreadTaskManager* ThreadTaskManager::GlobalInstance()
@@ -42,10 +54,15 @@ namespace Qaos {
 
 	void ThreadTaskManager::Container::run()
 	{
+		_task->_promise.start();
 		emit _task->started();
-		/// @todo aborted case
 		_task->run();
-		emit _task->finished();
+		if (_task->isAborted()) {
+			emit _task->aborted();
+		} else {
+			emit _task->finished();
+		}
+		_task->_promise.finish();
 	}
 
 	const ThreadTask& ThreadTaskManager::Container::get() const

@@ -2,6 +2,7 @@
 #define Qaos_ThreadTaskManager_hpp
 
 #include <QObject>
+#include <QPromise>
 
 #include <QThreadPool>
 #include <QRunnable>
@@ -9,6 +10,8 @@
 namespace Qaos {
 	class ThreadTask : public QObject
 	{
+	friend class ThreadTaskManager;
+
 	/** @name Qroperties */
 	/** @{ */
 	Q_OBJECT
@@ -30,6 +33,12 @@ namespace Qaos {
 		ThreadTask& operator()(const ThreadTask&) = delete;
 	/** @} */
 
+	/** @name Properties */
+	/** @{ */
+	private:
+		QPromise<void> _promise;
+	/** @} */
+
 	/** @name Procedures */
 	/** @{ */
 	public:
@@ -42,6 +51,18 @@ namespace Qaos {
 		void started();
 		void aborted();
 		void finished();
+	/** @} */
+
+	/** @name Slots */
+	/** @{ */
+	public slots:
+		void abort();
+	/** @} */
+
+	/** @name States */
+	/** @{ */
+	public:
+		bool isAborted() const;
 	/** @} */
 	};
 
@@ -80,6 +101,11 @@ namespace Qaos {
 		/** @{ */
 		public:
 			virtual void run() override;
+		/** @} */
+
+		/** @name Getters */
+		/** @{ */
+		public:
 			const ThreadTask& get() const;
 		/** @} */
 		};
